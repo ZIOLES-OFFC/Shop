@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Toko Robux - 5 Hari</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('https://cdn.discordapp.com/attachments/1277595593472086089/1332537753703026821/FREE_PANEL_PYTERODACTYLE_20250101_164225.jpg?ex=67f5db7d&is=67f489fd&hm=ce5dedc7543bb03ba79506d9ce6a35e8325c55e9799c10e2ec3416203a0bcfe3&') no-repeat center center fixed;
+      background-size: cover;
+    }
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.65);
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: 0;
+    }
+    .container {
+      max-width: 500px;
+      margin: 80px auto;
+      padding: 30px;
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      position: relative;
+      z-index: 2;
+    }
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    label {
+      margin-top: 15px;
+      display: block;
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+    .total {
+      margin-top: 15px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #2980b9;
+    }
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background: #27ae60;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #1e8449;
+    }
+    .note {
+      font-size: 12px;
+      margin-top: 15px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+  <div class="container">
+    <h2>Beli Robux (Dikirim 5 Hari)</h2>
+    
+    <label>Jumlah Robux:</label>
+    <input type="number" id="jumlahRobux" placeholder="Kelipatan 100 (contoh: 100)" min="100" step="100">
+    
+    <div class="total" id="totalHarga">Total Harga: Rp0</div>
+
+    <label>Username Roblox:</label>
+    <input type="text" id="username" placeholder="Username Roblox kamu">
+
+    <label>Kontak (WA/Email):</label>
+    <input type="text" id="kontak" placeholder="Untuk kami hubungi">
+
+    <label>Metode Pembayaran:</label>
+    <select id="metode">
+      <option value="DANA">DANA - 082162294322</option>
+      <option value="GoPay">GoPay - 082162294322</option>
+    </select>
+
+    <button onclick="kirimPesanan()">Pesan Sekarang</button>
+
+    <div class="note">* Robux akan dikirim 5 hari setelah pembayaran dikonfirmasi.<br>* Pastikan data kamu benar.</div>
+  </div>
+
+  <script>
+    const hargaPer100 = 10000;
+
+    document.getElementById('jumlahRobux').addEventListener('input', () => {
+      const jumlah = parseInt(document.getElementById('jumlahRobux').value) || 0;
+      const total = (jumlah / 100) * hargaPer100;
+      document.getElementById('totalHarga').innerText = `Total Harga: Rp${total.toLocaleString()}`;
+    });
+
+    function kirimPesanan() {
+      const jumlah = document.getElementById('jumlahRobux').value;
+      const username = document.getElementById('username').value;
+      const kontak = document.getElementById('kontak').value;
+      const metode = document.getElementById('metode').value;
+
+      if (!jumlah || !username || !kontak) {
+        alert("Lengkapi semua data ya!");
+        return;
+      }
+
+      const total = (jumlah / 100) * hargaPer100;
+      const pesan = `Halo Admin, saya mau beli Robux:\n\n- Jumlah: ${jumlah} Robux\n- Username: ${username}\n- Kontak: ${kontak}\n- Metode Pembayaran: ${metode}\n- Total: Rp${total.toLocaleString()}\n\n*Saya paham Robux akan dikirim 5 hari setelah pembayaran.*`;
+
+      const waAdmin = "6282198427185"; // Sudah diganti ke nomor kamu
+      const linkWA = `https://wa.me/${waAdmin}?text=${encodeURIComponent(pesan)}`;
+
+      window.open(linkWA, "_blank");
+    }
+  </script>
+</body>
+    </html>
